@@ -4,3 +4,14 @@ app
   main
     card * 12
     
+
+<Card src={nemophilia} name='nemophilia'/>
+        <Card src={carnation} name='carnation'/>
+        <Card src={chrysanthemum} name='chrysanthemum'/>
+        <Card src={lily} name='lily'/>
+        <Card src={orchid} name='orchid'/>
+        <Card src={rose} name='rose'/>
+        <Card src={sakura} name='sakura'/>
+        <Card src={sunflower} name='sunflower'/>
+        <Card src={tulip} name='tulip'/>
+        <Card src={violet} name='violet'/>

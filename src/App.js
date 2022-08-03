@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./components/Card";
 import './style/style.css';
 import nemophilia from './assets/nemophilia.jpg'
@@ -14,6 +14,25 @@ import violet from './assets/violet.jpeg'
 
 
 function App() {
+
+  const [cards, setCards] = useState(randomCards());
+
+  function randomCards () {
+    const assets = [{asset: nemophilia, name: 'nemophilia'}, {asset: carnation, name: 'carnation'}, {asset: chrysanthemum, name: 'chrysanthemum'}, {asset: lily, name: 'lily'}, {asset: orchid, name: 'lily'}, {asset: rose, name: 'rose'}, {asset: sakura, name: 'sakura'}, {asset: sunflower, name: 'sunflower'}, {asset: tulip, name: 'tulip'}, {asset: violet, name: 'violet'}];
+    const elements = [];
+    for (let i = 0; i < 10; i++) {
+      const random = Math.floor(Math.random() * assets.length);
+      const [flower] = assets.splice(random, 1);
+      const element = <Card src={flower.asset} name={flower.name} handleClick={handleClick}/>
+      elements.push(element);
+    }
+    return elements;
+  }
+
+  function handleClick() {
+    setCards(randomCards());
+  }
+
   return (
     <div>
       <div id="header">
@@ -21,16 +40,7 @@ function App() {
         <h3>Get points by clicking on an image but don't click on any more than once!</h3>
       </div>
       <div id="main">
-        <Card src={nemophilia} name='nemophilia'/>
-        <Card src={carnation} name='carnation'/>
-        <Card src={chrysanthemum} name='chrysanthemum'/>
-        <Card src={lily} name='lily'/>
-        <Card src={orchid} name='orchid'/>
-        <Card src={rose} name='rose'/>
-        <Card src={sakura} name='sakura'/>
-        <Card src={sunflower} name='sunflower'/>
-        <Card src={tulip} name='tulip'/>
-        <Card src={violet} name='violet'/>
+        {cards}
       </div>
     </div>
   );

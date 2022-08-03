@@ -1,8 +1,13 @@
 import React from "react";
+import uniqid from "uniqid";
 
 function Card (props) {
+  function handleClick() {
+    props.handleClick();
+  }
+
   return (
-    <div className="card">
+    <div key={uniqid()} className="card" onClick={handleClick}>
       <div>
         <img src={props.src} alt={props.name} />
         <h2>{props.name}</h2>
