@@ -1,0 +1,6 @@
+app
+  header
+    score
+  main
+    card * 12
+    
