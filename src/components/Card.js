@@ -2,8 +2,9 @@ import React from "react";
 import uniqid from "uniqid";
 
 function Card (props) {
+  
   function handleClick() {
-    props.handleClick();
+    props.handleClick(props.name);
   }
 
   return (

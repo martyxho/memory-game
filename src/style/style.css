@@ -3,6 +3,7 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 40px;
+  padding: 20px 0 0 50px;
 }
 
 .card {
@@ -19,4 +20,14 @@ img {
   width: 200px;
   height: 250px;
   object-fit: cover;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 100px 0 50px;
+}
+
+#scoreboard {
+  margin-top: 10px;
 }

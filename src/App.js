@@ -1,47 +1,43 @@
-import React, { useState } from "react";
-import Card from "./components/Card";
+import React, { useState, useEffect } from "react";
 import './style/style.css';
-import nemophilia from './assets/nemophilia.jpg'
-import carnation from './assets/carnation.webp'
-import chrysanthemum from './assets/chrysanthemum.jpg'
-import lily from './assets/lily.jpeg'
-import orchid from './assets/orchid.jpg'
-import rose from './assets/rose.jpeg'
-import sakura from './assets/sakura.jpg'
-import sunflower from './assets/sunflower.jpeg'
-import tulip from './assets/tulip.jpg'
-import violet from './assets/violet.jpeg'
-
+import Main from "./components/Main";
+import Header from "./components/Header";
 
 function App() {
+  const [clicked, setClicked] = useState([]);
+  const [score, setScore] = useState(0);
+  const [best, setBest] = useState(0);
 
-  const [cards, setCards] = useState(randomCards());
-
-  function randomCards () {
-    const assets = [{asset: nemophilia, name: 'nemophilia'}, {asset: carnation, name: 'carnation'}, {asset: chrysanthemum, name: 'chrysanthemum'}, {asset: lily, name: 'lily'}, {asset: orchid, name: 'lily'}, {asset: rose, name: 'rose'}, {asset: sakura, name: 'sakura'}, {asset: sunflower, name: 'sunflower'}, {asset: tulip, name: 'tulip'}, {asset: violet, name: 'violet'}];
-    const elements = [];
-    for (let i = 0; i < 10; i++) {
-      const random = Math.floor(Math.random() * assets.length);
-      const [flower] = assets.splice(random, 1);
-      const element = <Card src={flower.asset} name={flower.name} handleClick={handleClick}/>
-      elements.push(element);
+  useEffect(() => {
+    if (score > best) {
+      setBest(score);
     }
-    return elements;
+  }, [score, best]);
+
+  useEffect(() => {
+    if (clicked.length === 0) {
+      return;
+    }
+    if (hasDuplicates(clicked)) {
+      setScore(0);
+      setClicked([]);
+    } else {
+      setScore(score => score + 1);
+    }
+  }, [clicked]);
+
+  function hasDuplicates(array) {
+    if (array)
+    return (new Set(array)).size !== array.length;
   }
 
-  function handleClick() {
-    setCards(randomCards());
+  function addClicked(name) {
+    setClicked(arr => arr.concat(name));
   }
-
   return (
     <div>
-      <div id="header">
-        <h1>Memory Game</h1>
-        <h3>Get points by clicking on an image but don't click on any more than once!</h3>
-      </div>
-      <div id="main">
-        {cards}
-      </div>
+      <Header score={score} best={best} />
+      <Main handleClick={addClicked} />
     </div>
   );
 }
