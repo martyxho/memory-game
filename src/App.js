@@ -27,15 +27,15 @@ function App() {
   }, [clicked]);
 
   function hasDuplicates(array) {
-    if (array)
     return (new Set(array)).size !== array.length;
   }
 
   function addClicked(name) {
     setClicked(arr => arr.concat(name));
   }
+  
   return (
-    <div id="content">
+    <div>
       <Header score={score} best={best} />
       <Main handleClick={addClicked} />
     </div>
