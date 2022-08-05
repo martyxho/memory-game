@@ -1,5 +1,4 @@
 import React from "react";
-import uniqid from "uniqid";
 
 function Card (props) {
   
@@ -8,7 +7,7 @@ function Card (props) {
   }
 
   return (
-    <div key={uniqid()} className="card" onClick={handleClick}>
+    <div className="card" onClick={handleClick}>
       <div>
         <img src={props.src} alt={props.name} />
         <h2>{props.name}</h2>

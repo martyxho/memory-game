@@ -35,7 +35,7 @@ function App() {
     setClicked(arr => arr.concat(name));
   }
   return (
-    <div>
+    <div id="content">
       <Header score={score} best={best} />
       <Main handleClick={addClicked} />
     </div>
